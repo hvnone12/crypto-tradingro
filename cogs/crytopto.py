@@ -34,7 +34,7 @@ class Crytopto:
             await self.bot.say(embed=embed)
 
         except CoinNotFoundException:
-            await self.bot.say('Coin not found!')
+            await self.bot.say('Moneda nu a fost găsită!')
 
     async def on_message(self, message: discord.Message):
 
@@ -48,7 +48,7 @@ class Crytopto:
                 embed = get_embed_from_coin(coin)
                 await self.bot.send_message(message.channel, embed=embed)
             except CoinNotFoundException:
-                await self.bot.send_message(message.channel, 'Coin not found!')
+                await self.bot.send_message(message.channel, 'Moneda nu a fost găsită!')
         self.bot.process_commands(message)
 
 
@@ -59,7 +59,7 @@ def get_coin_from_ticker(ticker: str):
         ticker = ticker.upper()
         if ticker == coin_json['symbol']:
             return coin_json
-    return {'error': 'Coin not found!'}
+    return {'error': 'Moneda nu a fost găsită!'}
 
 
 def get_embed_from_coin(coin):
@@ -89,12 +89,12 @@ def get_embed_from_coin(coin):
                           description='Current Rank: ' + rank, url=currencies + id)
     embed.add_field(name='USD:', value=price_usd + ' $', inline=False)
     embed.add_field(name='BTC:', value=price_btc + ' ฿', inline=False)
-    embed.add_field(name='24h Volume:', value=volume_24 + ' $', inline=False)
+    embed.add_field(name='Volum 24h:', value=volume_24 + ' $', inline=False)
     embed.add_field(name='Market cap:', value=market_cap + ' $', inline=False)
-    embed.add_field(name='Total market cap:', value=str(total_cap) + ' $', inline=False)
-    embed.add_field(name='Change 1h:', value=percent_change_1h + '%', inline=True)
-    embed.add_field(name='Change 24h:', value=percent_change_24h + '%', inline=True)
-    embed.add_field(name='Change 7d:', value=percent_change_7d + '%', inline=True)
+    embed.add_field(name='Market cap total:', value=str(total_cap) + ' $', inline=False)
+    embed.add_field(name='Schimbare 1h:', value=percent_change_1h + '%', inline=True)
+    embed.add_field(name='Schimbare 24h:', value=percent_change_24h + '%', inline=True)
+    embed.add_field(name='Schimbare 7d:', value=percent_change_7d + '%', inline=True)
 
     embed.set_thumbnail(
         url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bitcoin.png/240px-Bitcoin.png')

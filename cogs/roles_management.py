@@ -25,7 +25,7 @@ class Roles:
                 msg = await self.bot.say('<@{}>, ai {} invitații acceptate'.format(user_invite[0].id, user_invite[1]))
                 next_rank, invites_needed = get_next_role(user_invite[1])
                 msg2 = await self.bot.say(
-                    '<@{}>,  mai ai nevoie de inca {} invitații pentru a avansa la {}'.format(user_invite[0].id,
+                    '<@{}>,  mai ai nevoie de încă {} invitații pentru a avansa la {}'.format(user_invite[0].id,
                                                                                               invites_needed -
                                                                                               user_invite[1],
                                                                                               next_rank))
@@ -56,8 +56,8 @@ class Roles:
         everyone = data.server.members
         members = list(filter(lambda x: not x.bot, everyone))
         online_members = list(filter(lambda x: x.status.value == 'online', members))
-        embed = discord.Embed(title='Server members', description='------------------\n''**Online members:** {}'
-                                                                  '\n**Total members:** {}'
+        embed = discord.Embed(title='Membri Server', description='------------------\n''**Membri Online:** {}'
+                                                                  '\n**Total membri:** {}'
                               .format(online_members.__len__(), members.__len__()), color=0xfff71e)
         msg = await self.bot.send_message(ctx.message.channel, embed=embed)
 

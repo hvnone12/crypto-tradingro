@@ -14,7 +14,7 @@ class Cleaner:
         async for message in self.bot.logs_from(ctx.message.channel, limit=lines):
             await self.bot.delete_message(message)
         # Auto-remove message
-        temp_message = await self.bot.send_message(ctx.message.channel, 'Cleaned!')
+        temp_message = await self.bot.send_message(ctx.message.channel, 'Curățat!')
         await asyncio.sleep(5)
         await self.bot.delete_message(temp_message)
 
