@@ -31,9 +31,9 @@ class Roles:
                                                                                               next_rank))
                 has_rank = True
         if not has_rank:
-            msg = await self.bot.say('<@{}> nu are nicio invitatie acceptata!'.format(ctx.message.author.id))
+            msg = await self.bot.say('<@{}>, nu ai nicio invitație acceptată!'.format(ctx.message.author.id))
             msg2 = await self.bot.say(
-                '<@{}> are nevoie de o invitatie pentru a deveni Rank 10!'.format(ctx.message.author.id))
+                '<@{}>, mai ai nevoie de o invitație pentru a deveni Rank 10!'.format(ctx.message.author.id))
 
     @commands.command(pass_context=True)
     async def rank(self, ctx):
