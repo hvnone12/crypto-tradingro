@@ -22,10 +22,10 @@ class Roles:
         msg2 = None
         for user_invite in data.users_invites.values():
             if user_invite[0].id == author.id:
-                msg = await self.bot.say('<@{}> are {} invitatii acceptate'.format(user_invite[0].id, user_invite[1]))
+                msg = await self.bot.say('<@{}>, ai {} invitații acceptate'.format(user_invite[0].id, user_invite[1]))
                 next_rank, invites_needed = get_next_role(user_invite[1])
                 msg2 = await self.bot.say(
-                    '<@{}>  mai are nevoie de inca {} invitatii pentru a avansa la {}'.format(user_invite[0].id,
+                    '<@{}>,  mai ai nevoie de inca {} invitații pentru a avansa la {}'.format(user_invite[0].id,
                                                                                               invites_needed -
                                                                                               user_invite[1],
                                                                                               next_rank))
