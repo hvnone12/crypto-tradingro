@@ -15,7 +15,7 @@ class Greeter:
         membru = discord.utils.get(data.server.roles, name='Membru')
         msg = await self.bot.send_message(welcome_channel, '{}, Bine ai venit pe Crypto-Trading Romania! Îți urăm '
                                                            'succes și sperăm să ai profit cât mai mult! '
-                                                           ':wink::moneybag::money~1:'.format(member.mention))
+                                                           ':bitcoin_mouth::money:'.format(member.mention))
         await self.bot.add_roles(member, membru)
 
 

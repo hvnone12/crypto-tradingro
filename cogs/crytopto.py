@@ -86,18 +86,18 @@ def get_embed_from_coin(coin):
 
     # Creating the embed
     embed = discord.Embed(title=name, color=0xfff71e,
-                          description='Current Rank: ' + rank, url=currencies + id)
-    embed.add_field(name='USD:', value=price_usd + ' $', inline=False)
-    embed.add_field(name='BTC:', value=price_btc + ' ฿', inline=False)
-    embed.add_field(name='Volum 24h:', value=volume_24 + ' $', inline=False)
-    embed.add_field(name='Market cap:', value=market_cap + ' $', inline=False)
-    embed.add_field(name='Market cap total:', value=str(total_cap) + ' $', inline=False)
-    embed.add_field(name='Schimbare 1h:', value=percent_change_1h + '%', inline=True)
-    embed.add_field(name='Schimbare 24h:', value=percent_change_24h + '%', inline=True)
-    embed.add_field(name='Schimbare 7d:', value=percent_change_7d + '%', inline=True)
+                          description='Rank Curent: ' + rank, url=currencies + id)
+    embed.add_field(name='Valoare în USD:', value=price_usd + ' $', inline=False)
+    embed.add_field(name='Valoare în BTC:', value=price_btc + ' ฿', inline=False)
+    embed.add_field(name='Volum în 24h:', value=volume_24 + ' $', inline=False)
+    embed.add_field(name='Market-cap:', value=market_cap + ' $', inline=False)
+    embed.add_field(name='Market-cap total:', value=str(total_cap) + ' $', inline=False)
+    embed.add_field(name='Modificare în 1h:', value=percent_change_1h + '%', inline=True)
+    embed.add_field(name='Modificare în 24h:', value=percent_change_24h + '%', inline=True)
+    embed.add_field(name='Modificare în 7z:', value=percent_change_7d + '%', inline=True)
 
     embed.set_thumbnail(
-        url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Bitcoin.png/240px-Bitcoin.png')
+        url='https://mg.tools/wp-content/uploads/2017/12/1aeb569378d29bec56401dfa2d6f3852_icon.png')
 
     return embed
 
