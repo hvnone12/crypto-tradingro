@@ -13,7 +13,7 @@ def get_next_role(number: int):
     for invites_needed in invites_keys:
         if number < invites_needed:
             return roles[invites_needed], invites_needed
-    return 'Rank1', 100
+    return 'Rank 1', 100
 
 
 def get_previous_role(number: int):

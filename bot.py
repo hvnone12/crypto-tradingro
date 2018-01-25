@@ -48,4 +48,4 @@ async def on_member_join(member: discord.Member):
     data.joined.append(member.id)
 
 # Test bot
-bot.run('NDAxNDIyMzQ3NjExMTQ0MTky.DTp9UQ.mDDoP7T5rKYGWNU90zuCK1je4Mg')
+bot.run('NDA2MDU3OTgwNjg1OTc1NTUz.DUtapg.c9aAei-lco0085EnmoAh1rpqZx4')
