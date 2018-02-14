@@ -123,7 +123,7 @@ async def assign_roles(bot):
         if role in member.roles:
             continue
 
-        if member.top_role.name == 'Premium':
+        if member.top_role.name == 'Staff':
             print('I will not change the role for Advisory')
             continue
 
