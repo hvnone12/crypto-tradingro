@@ -9,6 +9,16 @@ import asyncio
 class Roles:
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+		
+	@commands.command(pass_context=True)
+    async def Update(self, ctx: commands.Context):
+		update_channel = self.bot.get_channel('413954987446632449')
+        role_name = ctx.command
+        member = ctx.message.author
+        role = discord.utils.get(ctx.message.server.roles, name=role_name)
+		msg = await self.bot.send_message(update_channel, '{}, De acum vei fi anuntat cand apar informatii noi!'
+                                                           ':money_mouth::moneybag::money_with_wings:'.format(member.mention))
+        await self.bot.add_roles(member, role)
 
     @commands.command(pass_context=True)
     async def invitatii(self, ctx):

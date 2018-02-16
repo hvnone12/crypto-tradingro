@@ -8,7 +8,7 @@ import asyncio
 
 description = '''Bot'''
 
-modules = {'cogs.roles_management', 'cogs.roles_config', 'cogs.cleaner', 'cogs.crytopto', 'cogs.greeter', 'cogs.update'}
+modules = {'cogs.roles_management', 'cogs.roles_config', 'cogs.cleaner', 'cogs.crytopto', 'cogs.greeter'}
 
 bot = commands.Bot(command_prefix='!', description=description)
 
