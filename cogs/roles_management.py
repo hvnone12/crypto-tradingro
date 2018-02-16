@@ -13,12 +13,21 @@ class Roles:
     @commands.command(pass_context=True)
     async def update(self, ctx: commands.Context):
         update_channel = self.bot.get_channel('413954987446632449')
-        role_name = ctx.command
         member = ctx.message.author
-        role = discord.utils.get(ctx.message.server.roles, name=role_name)
-        msg = await self.bot.send_message(update_channel, '{}, De acum vei fi anuntat cand apar informatii noi!'
-                                                           ':money_mouth::moneybag::money_with_wings:'.format(member.mention))
+        role = discord.utils.get(ctx.message.server.roles, name='Update')
+        msg = await self.bot.send_message(update_channel, '{}, de acum vei fi anuntat cand apar informatii noi!'
+                                                           ':white_check_mark:'.format(member.mention))
         await self.bot.add_roles(member, role)
+
+
+    @commands.command(pass_context=True)
+    async def noupdate(self, ctx: commands.Context):
+        update_channel = self.bot.get_channel('413954987446632449')
+        member = ctx.message.author
+        role = discord.utils.get(ctx.message.server.roles, name='Update')
+        msg = await self.bot.send_message(update_channel, '{}, de acum nu vei mai fi anuntat cand apar informatii noi!'
+                                                           ':negative_squared_cross_mark:'.format(member.mention))
+        await self.bot.remove_roles(member, role)
 
     @commands.command(pass_context=True)
     async def invitatii(self, ctx):
