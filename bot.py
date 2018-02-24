@@ -24,7 +24,7 @@ async def on_ready():
     online_members = list(filter(lambda x: x.status.value == 'online' , everyone))
     online_members2 = list(filter(lambda y: y.status.value == 'idle' , everyone))
     online_members3 = list(filter(lambda z: z.status.value == 'dnd' , everyone))
-    online_membersfin = [(lambda x, y, z: x+y+z)]
+    online_membersfin = list(set(online_members+online_members2+online_members3))
     await bot.change_presence(game=discord.Game(name='{} din {} Online'.format(online_membersfin.__len__(), everyone.__len__())))
     print('Loading cogs...')
     if __name__ == '__main__':
