@@ -53,7 +53,7 @@ class Roles:
         msg = await self.bot.send_message(ctx.message.channel, embed=embed)
 
     @commands.command(pass_context=True)
-    async def members(self, ctx):
+    async def membri(self, ctx):
         if not ctx.message.channel.id == '401435705668009985':
             await self.bot.delete_message(ctx.message)
             return

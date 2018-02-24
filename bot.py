@@ -24,8 +24,11 @@ async def on_ready():
     members = list(filter(lambda x: not x.bot, everyone))
     members2 = list(filter(lambda y: not y.bot, everyone))
     members3 = list(filter(lambda z: not z.bot, everyone))
-    online_members = list(filter(lambda x, y, z: x.status.value == 'online', y.status.value == 'idle', z.status.value == 'dnd', members))
-    await bot.change_presence(game=discord.Game(name='{} din {} Online'.format(online_members.__len__(), members.__len__())))
+    online_members = list(filter(lambda x: x.status.value == 'online' , members))
+	online_members2 = list(filter(lambda y: y.status.value == 'idle' , members))
+	online_members3 = list(filter(lambda z: z.status.value == 'dnd' , members))
+    online_membersfin = list(filter(lambda x, y, z: x+y+z, members)) 
+    await bot.change_presence(game=discord.Game(name='{} din {} Online'.format(online_membersfin.__len__(), members.__len__())))
     print('Loading cogs...')
     if __name__ == '__main__':
         modules_loaded = 0
