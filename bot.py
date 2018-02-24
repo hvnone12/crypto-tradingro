@@ -23,7 +23,7 @@ async def on_ready():
     everyone = data.server.members
     members = list(filter(lambda x: not x.bot, everyone))
     online_members = list(filter(lambda x: x.status.value == 'online' or 'idle' or 'dnd', members))
-    await bot.change_presence(game=discord.Game(name='{} din {} Online!'.format(online_members.__len__(), members.__len__())))
+    await bot.change_presence(game=discord.Game(name='{} din {} Online'.format(online_members.__len__(), members.__len__())))
     print('Loading cogs...')
     if __name__ == '__main__':
         modules_loaded = 0
