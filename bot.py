@@ -20,7 +20,10 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     data.server = bot.get_server('399637505512701952')
-    await bot.change_presence(game=discord.Game(name='{} online din {} membri!'.format(data.server.online_members.__len__(), data.server.members.__len__())))
+    everyone = data.server.members
+    members = list(filter(lambda x: not x.bot, everyone))
+    online_members = list(filter(lambda x: x.status.value == 'online', members))
+    await bot.change_presence(game=discord.Game(name='{} online din {} membri!'.format(online_members.__len__(), members.__len__())))
     print('Loading cogs...')
     if __name__ == '__main__':
         modules_loaded = 0
