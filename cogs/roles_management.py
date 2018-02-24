@@ -11,6 +11,11 @@ class Roles:
         self.bot = bot
 
     @commands.command(pass_context=True)
+    async def id(self, ctx: commands.Context):
+        member = ctx.message.author.id
+        await ctx.author.send(member)
+
+    @commands.command(pass_context=True)
     async def invitatii(self, ctx):
         """Shows the invites, only in invite-counter"""
         author = ctx.message.author
