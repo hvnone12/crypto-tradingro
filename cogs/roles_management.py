@@ -13,7 +13,7 @@ class Roles:
     @commands.command(pass_context=True)
     async def id(self, ctx: commands.Context):
         did = ctx.message.author.id
-        await self.bot.send_message(ctx.message.author, Discord ID-ul tau este: did)
+        await self.bot.send_message(ctx.message.author, 'Discord ID-ul tau este: {}'.format(did))
 
     @commands.command(pass_context=True)
     async def invitatii(self, ctx):
