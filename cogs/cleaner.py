@@ -3,20 +3,20 @@ import asyncio
 
 
 class Cleaner:
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot):
         self.bot = bot
 
     @commands.command(pass_context=True)
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(manage_guild=True)
     async def clean(self, ctx, lines: int=80000):
         """<number of line> (everything if no number)"""
         # Removes the lines
-        async for message in self.bot.logs_from(ctx.message.channel, limit=lines):
-            await self.bot.delete_message(message)
+        async for message in ctx.message.channel.history(limit=lines):
+            await message.delete()
         # Auto-remove message
-        temp_message = await self.bot.send_message(ctx.message.channel, 'Curățat!')
+        temp_message = await ctx.send('Curățat!')
         await asyncio.sleep(5)
-        await self.bot.delete_message(temp_message)
+        await temp_message.delete()
 
 
 def setup(bot: commands.Bot):

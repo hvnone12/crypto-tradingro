@@ -13,48 +13,48 @@ class Roles:
     @commands.command(pass_context=True)
     async def id(self, ctx: commands.Context):
         did = ctx.message.author.id
-        await self.bot.send_message(ctx.message.author, 'Discord ID-ul tau este: %s ' % did)
+        await ctx.message.author.send('Discord ID-ul tau este: %s ' % did)
 
     @commands.command(pass_context=True)
     async def invitatii(self, ctx):
         """Shows the invites, only in invite-counter"""
         author = ctx.message.author
-        if not ctx.message.channel.id == '401435705668009985':
-            await self.bot.delete_message(ctx.message)
+        if not ctx.message.channel.id == 401435705668009985:
+            await ctx.message.delete()
             return
         has_rank = False
         msg = None
         msg2 = None
         for user_invite in data.users_invites.values():
             if user_invite[0].id == author.id:
-                msg = await self.bot.say('<@{}>, ai {} invitații acceptate!'.format(user_invite[0].id, user_invite[1]))
+                msg = await ctx.send('<@{}>, ai {} invitații acceptate!'.format(user_invite[0].id, user_invite[1]))
                 next_rank, invites_needed = get_next_role(user_invite[1])
-                msg2 = await self.bot.say(
+                msg2 = await ctx.send(
                     '<@{}>,  mai ai nevoie de încă {} invitații pentru a avansa la {}!'.format(user_invite[0].id,
                                                                                               invites_needed -
                                                                                               user_invite[1],
                                                                                               next_rank))
                 has_rank = True
         if not has_rank:
-            msg = await self.bot.say('<@{}>, nu ai nicio invitație acceptată!'.format(ctx.message.author.id))
-            msg2 = await self.bot.say(
+            msg = await ctx.send('<@{}>, nu ai nicio invitație acceptată!'.format(ctx.message.author.id))
+            msg2 = await ctx.send(
                 '<@{}>, mai ai nevoie de o invitație pentru a deveni Rank 10!'.format(ctx.message.author.id))
 
     @commands.command(pass_context=True)
     async def rank(self, ctx):
-        if not ctx.message.channel.id == '401435705668009985':
-            await self.bot.delete_message(ctx.message)
+        if not ctx.message.channel.id == 401435705668009985:
+            await ctx.message.delete()
             return
         """Shows the roles affiliate level"""
         message = ''
         for invites, rank in roles.items():
             message += '**{}** - {} invites\n'.format(rank, invites)
         embed = discord.Embed(title='Rank', description=message, color=0xfff71e)
-        msg = await self.bot.send_message(ctx.message.channel, embed=embed)
+        msg = await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     async def membri(self, ctx):
-        if not ctx.message.channel.id == '401435705668009985':
+        if not ctx.message.channel.id == 401435705668009985:
             await self.bot.delete_message(ctx.message)
             return
         """Shows somse info"""
@@ -64,18 +64,17 @@ class Roles:
         embed = discord.Embed(title='Membri Server', description='------------------\n''**Membri Online:** {}'
                                                                   '\n**Total membri:** {}'
                               .format(online_members.__len__(), members.__len__()), color=0xfff71e)
-        msg = await self.bot.send_message(ctx.message.channel, embed=embed)
+        msg = await ctx.send(embed=embed)
 
 
 async def rli(bot):
     # Get the current invites
-    while not bot.is_closed:
-
-        await asyncio.sleep(35)
+    while not bot.is_closed():
+        await asyncio.sleep(35, loop=bot.loop)
         # Check if server is ready and registered
         if data.server is None:
             continue
-        current_invites = await bot.invites_from(data.server)
+        current_invites = await data.server.invites()
         for invite in current_invites:
             try:
                 # User inviter
@@ -97,6 +96,7 @@ async def rli(bot):
 
 
 async def assign_roles(bot):
+    print("enters")
     await asyncio.sleep(5)
     # Check if server is ready and registered
     if data.server is None:
@@ -115,7 +115,7 @@ async def assign_roles(bot):
         if member.top_role.name == 'Admin':
             print('I will not change the role for admins')
             continue
-
+        print(member.top_role.name)
         role = discord.utils.get(data.server.roles, name='Developer')
         if role in member.roles:
             continue
@@ -165,7 +165,7 @@ async def assign_roles(bot):
             continue
         print('{} with {} invites. Role -> {}'.format(user.display_name, invites, role.name))
         try:
-            await bot.add_roles(member, role)
+            await member.add_roles(role)
         except discord.errors.Forbidden as e:
             pass
         await asyncio.sleep(0.1)

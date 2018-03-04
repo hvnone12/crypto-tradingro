@@ -22,7 +22,7 @@ class Crytopto:
         self.bot = bot
 
     @commands.command()
-    async def coin(self, param: str=None):
+    async def coin(self, ctx, param: str=None):
         try:
             # Get the json response
             resp = requests.get(base_url + 'ticker/' + param)
@@ -31,10 +31,11 @@ class Crytopto:
             coin = resp_json[0]
             embed = get_embed_from_coin(coin)
 
-            await self.bot.say(embed=embed)
+            await ctx.send(embed=embed)
 
         except CoinNotFoundException:
-            await self.bot.say('Moneda nu a fost găsită!')
+            await ctx.send('Moneda nu a fost găsită!')
+
 
     async def on_message(self, message: discord.Message):
 
@@ -46,9 +47,9 @@ class Crytopto:
             coin = get_coin_from_ticker(ticker)
             try:
                 embed = get_embed_from_coin(coin)
-                await self.bot.send_message(message.channel, embed=embed)
+                await message.channel.send(embed=embed)
             except CoinNotFoundException:
-                await self.bot.send_message(message.channel, 'Moneda nu a fost găsită!')
+                await message.channel.send('Moneda nu a fost găsită!')
         self.bot.process_commands(message)
 
 
