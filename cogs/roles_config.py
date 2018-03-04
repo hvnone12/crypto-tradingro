@@ -12,24 +12,24 @@ class RolesConfig:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(manage_guild=True)
     async def remove_roles(self, ctx):
         """This command removes ALL the roles ranking"""
         roles.clear()
-        await self.bot.say('Role ranking removed!')
+        await ctx.send('Role ranking removed!')
 
     @commands.command(pass_context=True)
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(manage_guild=True)
     async def add_role(self, ctx, role_name: str, invites_needed: int):
         """<role-name><invites-needed>"""
         roles[invites_needed] = role_name
 
     @commands.command(pass_context=True)
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(manage_guild=True)
     async def unban(self, ctx, user: str):
         """<role-name><invites-needed>"""
         del joined[:]
-        await self.bot.say('Unbanned!')
+        await ctx.send('Unbanned!')
 
 
 def setup(bot: commands.Bot):

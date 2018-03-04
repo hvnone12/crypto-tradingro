@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 
 class CountdownCommands:
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot):
         self.bot = bot
         self.countdown = None
 
